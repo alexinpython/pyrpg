@@ -59,15 +59,15 @@ def pausecommand():
 ###User actions###
 ##explore##
 def explore():
-  print '-------------------------------------'
-  print 'you explore'
-  print '1. return to menu'  
-  print '-------------------------------------'
+  print("-------------------------------------")
+  print("you explore")
+  print("1. return to menu") 
+  print("-------------------------------------")
   exploreinput = raw_input(':')
   if exploreinput == '1':
     explore()
   else:
-    print 'ERROR, please choose option 1.'
+    print("ERROR, please choose option 1.")
     pausecommand()
     explore()
 
@@ -79,38 +79,39 @@ def fight(monster):
   fight2()
 
 def fight2(monster):
-  print '-------------------------------------' 
-  print 'you see a... ' + monster['name']
-  print 'atk = ' + monsteratk + ' def = ' + monsterdef + ' hp = ' + monsterhp
-  print '1. attack'
-  print '2. run'
-  print '-------------------------------------'
+  print("-------------------------------------")
+  print("you see a... " + monster['name'])
+  print("atk = " + monsteratk + " def = " + monsterdef + " hp = " + monsterhp)
+  print("1. attack")
+  print("2. run")
+  print("-------------------------------------")
   fightinput = raw_input(':')
   if fightinput == '1':
     attack()
   if fightinput == '2':
     mainmenu()
   else:
-    print 'ERROR, please choose option 1 or 2.'
+    print("ERROR, please choose option 1 or 2.'
     pausecommand()
     explore()
 
 #attack#
 def attack():
-  print 'you attack'
+  print("you attack")
   #put in attack steps
   #move to next function
+  pausecommand()
   alivecheck()
 
 def alivecheck(monster):
   if character['hp'] <= 0:
-    print 'you have died'
+    print("you have died'
     pausecommand()
     newgamemenu()
   elif monsterhp <= 0:
     if monster['hp'] <= 0:
         character['exp'] = character['exp'] " monster['exp given']
-        print 'you have killed ' + monster
+        print("you have killed the " + monster['name'])
     #add in if the monster is dead and 'you win'
     #add in check for monster being skeletonking
     characterlevelup()
@@ -122,7 +123,7 @@ def characterlevelup():
   if character['exp'] >= character['exp to next level']:
     character['level'] = character['level'] + 1
     character['exp to next level'] 
-    print 'You leveled up!'
+    print("You leveled up!")
     print character['level']
   else:
     mainmenu()
@@ -130,11 +131,11 @@ def characterlevelup():
 
 ###User menus###
 def newgamemenu():
-  print '-------------------------------------'
-  print 'Would you like to play again?'
-  print '1. Yes'
-  print '2. No'
-  print '-------------------------------------'
+  print("-------------------------------------")
+  print("Would you like to play again?")
+  print("1. Yes")
+  print("2. No")
+  print("-------------------------------------")
   newgamemenuinput = raw_input(':')
   if newgamemenuinput == '1':
     character['level'] = 1
@@ -147,17 +148,17 @@ def newgamemenu():
   elif newgamemenuinput == '2':
     exitmenu()
   else:
-    print 'ERROR, please choose option 1 or 2.'
+    print("ERROR, please choose option 1 or 2.")
     pausecommand()
     newgamemenu()
 
 ##menu - exit##
 def exitmenu():
-  print '-------------------------------------'
-  print 'Do you really want to Exit?'
-  print '1. Yes'
-  print '2. No'
-  print '-------------------------------------'
+  print("-------------------------------------")
+  print("Do you really want to Exit?")
+  print("1. Yes")
+  print("2. No")
+  print("-------------------------------------")
   exitinput = raw_input(':')
   if exitinput == '1':
     import sys
@@ -165,19 +166,19 @@ def exitmenu():
   elif exitinput == '2':
     mainmenu()
   else:
-    print 'ERROR, please choose option 1 or 2.'
+    print("ERROR, please choose option 1 or 2.")
     pausecommand()
     exitmenu()
 
 ##main menu##
 def mainmenu():
-  print '----------Welcome to Pyrpg!----------'
-  print 'Please choose an option:'
-  print '1. explore'
-  print '2. fight'
-  print '3. camp'
-  print '4. exit'
-  print '-------------------------------------'
+  print("----------Welcome to Pyrpg!----------")
+  print("Please choose an option:")
+  print("1. explore")
+  print("2. fight")
+  print("3. camp")
+  print("4. exit")
+  print("-------------------------------------")
   maininput = raw_input(':')
   if maininput == '1':
     explore()
@@ -188,7 +189,7 @@ def mainmenu():
   elif maininput == '4':
     exitmenu()
   else:
-    print 'ERROR, please choose option 1, 2, 3, or 4.'
+    print("ERROR, please choose option 1, 2, 3, or 4.")
     pausecommand()
     mainmenu()
 
