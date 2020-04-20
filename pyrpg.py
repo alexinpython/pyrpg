@@ -16,8 +16,6 @@ character = {
 }
 
 ##monsters##
-monster = [rat, bigrat, skeletonking]
-
 rat = {
   'name': 'rat',
   'level': 1,
@@ -45,13 +43,14 @@ skeletonking = {
   'exp given': 10,
 }
 
+monster = [rat, bigrat, skeletonking]
 
 
 ###Behind the Scenes code###
 ##pause command##
 def pausecommand():
   while True:
-    if not raw_input('Press Enter to continue '):
+    if not input('Press Enter to continue '):
         break
 
 
@@ -63,9 +62,9 @@ def explore():
   print("you explore")
   print("1. return to menu") 
   print("-------------------------------------")
-  exploreinput = raw_input(':')
+  exploreinput = input(':')
   if exploreinput == '1':
-    explore()
+    mainmenu()
   else:
     print("ERROR, please choose option 1.")
     pausecommand()
@@ -85,13 +84,13 @@ def fight2(monster):
   print("1. attack")
   print("2. run")
   print("-------------------------------------")
-  fightinput = raw_input(':')
+  fightinput = input(':')
   if fightinput == '1':
     attack()
   if fightinput == '2':
     mainmenu()
   else:
-    print("ERROR, please choose option 1 or 2.'
+    print("ERROR, please choose option 1 or 2.")
     pausecommand()
     explore()
 
@@ -105,12 +104,12 @@ def attack():
 
 def alivecheck(monster):
   if character['hp'] <= 0:
-    print("you have died'
+    print("you have died")
     pausecommand()
     newgamemenu()
   elif monsterhp <= 0:
     if monster['hp'] <= 0:
-        character['exp'] = character['exp'] " monster['exp given']
+        character['exp'] = character['exp'] + monster['exp given']
         print("you have killed the " + monster['name'])
     #add in if the monster is dead and 'you win'
     #add in check for monster being skeletonking
@@ -118,15 +117,24 @@ def alivecheck(monster):
   else:
     fight2(monster)
 
-##character level up##
+#character level up#
 def characterlevelup():
   if character['exp'] >= character['exp to next level']:
     character['level'] = character['level'] + 1
     character['exp to next level'] 
     print("You leveled up!")
-    print character['level']
+    print(character['level'])
   else:
     mainmenu()
+
+##camp##
+def camp():
+  #add in heal HP feature
+  print("-------------------------------------")
+  print("you are now healed")
+  print("-------------------------------------")
+  pausecommand()
+  mainmenu()
 
 
 ###User menus###
@@ -136,7 +144,7 @@ def newgamemenu():
   print("1. Yes")
   print("2. No")
   print("-------------------------------------")
-  newgamemenuinput = raw_input(':')
+  newgamemenuinput = input(':')
   if newgamemenuinput == '1':
     character['level'] = 1
     character['exp'] = 0
@@ -159,10 +167,9 @@ def exitmenu():
   print("1. Yes")
   print("2. No")
   print("-------------------------------------")
-  exitinput = raw_input(':')
+  exitinput = input(':')
   if exitinput == '1':
-    import sys
-    sys.exit(0)
+    exit()
   elif exitinput == '2':
     mainmenu()
   else:
@@ -179,11 +186,13 @@ def mainmenu():
   print("3. camp")
   print("4. exit")
   print("-------------------------------------")
-  maininput = raw_input(':')
+  maininput = input(':')
   if maininput == '1':
     explore()
   elif maininput == '2':
-    fight()
+    #update with current number of monsters
+    import random
+    fight([random.randint(0, 2)])
   elif maininput == '3':
     camp()
   elif maininput == '4':
